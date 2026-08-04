@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order | Feeyah Cakes & Pastries</title>
+    <link rel="stylesheet" href="order.css">
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <h1>Feeyah Cakes & Pastries</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a class="active" href="order.html">Order</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<!-- Intro Section -->
+<section class="order-intro">
+    <h2>Place Your Order</h2>
+    <p>
+        Fill in the details below and we’ll process your order quickly.  
+        You will be redirected to WhatsApp to confirm your order.
+    </p>
+</section>
+
+<!-- Order Form Section -->
+<section class="order-section">
+    <form class="order-form" id="orderForm">
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="name" placeholder="Enter your full name..." required>
+        </div>
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" id="phone" placeholder="e.g. 080XXXXXXXX..." required>
+        </div>
+        <div class="form-group">
+            <label>Product</label>
+            <select id="product" required>
+                <option value="">Select product</option>
+                <option>Chocolate Cake</option>
+                <option>Red Velvet Cake</option>
+                <option>Vanilla Cupcakes</option>
+                <option>Fruit Tart</option>
+                <option>Custom Cake</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Quantity</label>
+            <input type="number" id="quantity" min="1" placeholder="e.g. 1" required>
+        </div>
+        <div class="form-group">
+            <label>Delivery Date</label>
+            <input type="date" id="date" required>
+        </div>
+        <div class="form-group">
+            <label>Additional Notes</label>
+            <textarea id="notes" rows="4" placeholder="Flavour, message on cake, color preference..."></textarea>
+        </div>
+        <button type="submit">Proceed to WhatsApp</button>
+    </form>
+</section>
+
+<!-- Order Info Section -->
+<section class="order-info">
+    <h3>How It Works</h3>
+    <ul>
+        <li>Fill in your order details</li>
+        <li>Click “Proceed to WhatsApp”</li>
+        <li>Confirm your order with us</li>
+        <li>We bake & deliver fresh</li>
+    </ul>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>© 2026 Feeyah Cakes & Pastries. Freshly baked with care.</p>
+</footer>
+
+<!-- Success Message -->
+<div id="successMessage" class="success-message">
+    <h4>Order Sent Successfully 🎉</h4>
+    <p>You are being redirected to WhatsApp to confirm your order.</p>
+</div>
+
+<!-- JavaScript -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    /* Autofill product if coming from shop page */
+    const params = new URLSearchParams(window.location.search);
+    const productFromURL = params.get("product");
+    if (productFromURL) {
+        const productSelect = document.getElementById("product");
+        for (let option of productSelect.options) {
+            if (option.text === productFromURL) {
+                option.selected = true;
+                break;
+            }
+        }
+    }
+});
+
+/* WhatsApp Order Submit with Success Message */
+document.getElementById("orderForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const product = document.getElementById("product").value;
+    const quantity = document.getElementById("quantity").value;
+    const date = document.getElementById("date").value;
+    const notes = document.getElementById("notes").value || "None";
+
+    const message =
+        `*NEW ORDER RECEIVED*%0A--------------------%0A` +
+        `*Name:* ${name}%0A` +
+        `*Phone:* ${phone}%0A` +
+        `*Product:* ${product}%0A` +
+        `*Quantity:* ${quantity}%0A` +
+        `*Delivery Date:* ${date}%0A` +
+        `*Notes:* ${notes}%0A--------------------`;
+
+    const whatsappNumber = "2349160922506";
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+    /* Show success message */
+    const successBox = document.getElementById("successMessage");
+    successBox.style.display = "block";
+
+    /* Redirect after short delay */
+    setTimeout(() => {
+        window.open(whatsappURL, "_blank");
+        successBox.style.display = "none";
+        document.getElementById("orderForm").reset();
+    }, 1800);
+});
+</script>
+
+</body>
+</html>
+
