@@ -1,0 +1,128 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1F2933, #111827);
+    color: #FFF;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 80px 20px 40px;
+}
+
+header h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 18px;
+    color: #D1D5DB;
+}
+
+/* Contact Wrapper */
+.contact-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 40px 20px;
+    flex-wrap: wrap;
+}
+
+/* Glass Cards */
+.contact-card,
+.social-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 25px;
+    padding: 40px;
+    width: 320px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    text-align: center;
+}
+
+/* Headings */
+.contact-card h2,
+.social-card h2 {
+    margin-bottom: 30px;
+    font-size: 26px;
+}
+
+/* Buttons */
+.contact-btn {
+    display: block;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 50px;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.contact-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+/* Button Colors */
+.whatsapp {
+    background: #25D366;
+    color: #111;
+}
+
+.email {
+    background: #3B82F6;
+    color: #FFF;
+}
+
+/* Social Links */
+.social-links a {
+    display: block;
+    margin: 12px 0;
+    padding: 12px;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #FFF;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.facebook { background: #1877F2; }
+.instagram { background: #E1306C; }
+.twitter { background: #1DA1F2; }
+.snapchat { background: #FFFC00; color: #111; }
+.telegram { background: #229ED9; }
+
+.social-links a:hover {
+    opacity: 0.85;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: #9CA3AF;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 36px;
+    }
+
+    .contact-card,
+    .social-card {
+        width: 100%;
+        max-width: 350px;
+    }
+}
